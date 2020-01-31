@@ -306,58 +306,120 @@ public class Lab2_CamiloFerrera {
                 }
                 
                 
-                
-                int turno = 0;
                 boolean ganador = false;
-                int ac1 = 0, acpu = 0;
+                int ac1 = 0, acpu = 0, cs1 = 0, cscpu = 0, damage1 = 0, damagecpu = 0;
+                
                 while (ganador == false) { 
-                    if (turno%2 == 0){
-                        System.out.println("1. Atacar \n"
-                                + "2. Defender");
-                        System.out.println("Ingrese opción de accion: ");
-                        opcion = leer.nextInt();
-                        System.out.println();
-                        
-                        if (personajes.get(personajep1).getClase().equals("Clérigo")){
-                            ac1 = 40;
-                        } else if(personajes.get(personajep1).getClase().equals("Bárbaro")){
-                            ac1 = 65;
-                        } else if(personajes.get(personajep1).getClase().equals("Mago")){
-                            ac1 = 20;
-                        } else if(personajes.get(personajep1).getClase().equals("Pícaro")){
-                            ac1 = 50;
-                        }
-                        
-                        if (opcion == 1){
-                            
-                        } else {
-                            ac1+=15;
-                        }
-                    } else {
-                        System.out.println("1. Atacar \n"
-                                + "2. Defender");
-                        System.out.println("Ingrese opción de accion: ");
-                        opcion = leer.nextInt();
-                        System.out.println();
-                        
-                        if (personajes.get(personajep1).getClase().equals("Clérigo")){
-                            acpu = 40;
-                        } else if(personajes.get(personajecpu).getClase().equals("Bárbaro")){
-                            acpu = 65;
-                        } else if(personajes.get(personajecpu).getClase().equals("Mago")){
-                            acpu = 20;
-                        } else if(personajes.get(personajecpu).getClase().equals("Pícaro")){
-                            acpu = 50;
-                        }
-                        
-                        if (opcion == 1){
-                            
-                        } else {
-                            acpu+=15;
-                        }
+                    
+                    System.out.println("1. Atacar \n"
+                            + "2. Defender");
+                    System.out.println("Ingrese opción de accion: ");
+                    opcion = leer.nextInt();
+                    System.out.println();
+
+                    if (personajes.get(personajep1).getClase().equals("Clérigo")){
+                        ac1 = 40;
+                        cs1 = 97;
+                        damage1 =  5 + rand.nextInt(11);
+                    } else if(personajes.get(personajep1).getClase().equals("Bárbaro")){
+                        ac1 = 65;
+                        cs1 = 93;
+                        damage1 = 15+rand.nextInt(16);
+                    } else if(personajes.get(personajep1).getClase().equals("Mago")){
+                        ac1 = 20;
+                        cs1 = 101;
+                        damage1 = 5 +rand.nextInt(6);
+                    } else if(personajes.get(personajep1).getClase().equals("Pícaro")){
+                        ac1 = 50;
+                        cs1 = 80;
+                        damage1 = 15 + rand.nextInt(11);
+                    }
+      
+                    int opcioncpu = 1+rand.nextInt(2);
+                    System.out.println();
+
+                    if (personajes.get(personajecpu).getClase().equals("Clérigo")){
+                        acpu = 40;
+                        cscpu = 97;
+                        damagecpu =  5 + rand.nextInt(11);
+                    } else if(personajes.get(personajecpu).getClase().equals("Bárbaro")){
+                        acpu = 65;
+                        cscpu = 93;
+                        damagecpu = 15+rand.nextInt(16);
+                    } else if(personajes.get(personajecpu).getClase().equals("Mago")){
+                        acpu = 20;
+                        cscpu = 101;
+                        damagecpu = 5 +rand.nextInt(6);
+                    } else if(personajes.get(personajecpu).getClase().equals("Pícaro")){
+                        acpu = 50;
+                        cscpu = 80;
+                        damagecpu = 15 + rand.nextInt(11);
                     }
                     
-                    turno++;
+                    
+
+                    if (opcion == 1 && opcioncpu == 1){
+                        int ataque = rand.nextInt(101);
+                        if (ataque > acpu){
+                            if (ataque > cs1){
+                                System.out.println("Player1 ha hecho golpe critico");
+                                damage1*=2;
+                            }
+                            hpcpu -= damage1;
+                        } else {
+                            System.out.println("Player1 no acerto el golpe");
+                        }
+                        
+                        
+                        ataque = rand.nextInt(101);
+                        if (ataque > ac1){
+                            if (ataque > cscpu){
+                                System.out.println("CPU ha hecho golpe critico");
+                                damagecpu*=2;
+                            }
+                            hp1 -= damagecpu;
+                        } else {
+                            System.out.println("CPU no acerto el golpe");
+                        }
+                        
+                    } else if (opcion == 1 && opcioncpu == 2){
+                        acpu += 15;
+                        int ataque = rand.nextInt(101);
+                        if (ataque > acpu){
+                            if (ataque > cs1){
+                                damage1*=2;
+                                System.out.println("Player1 ha hecho golpe critico");
+                            }
+                            hpcpu -= damage1;
+                        } else {
+                            System.out.println("Player1 no acerto el golpe");
+                        }
+                        System.out.println("CPU se defendio");
+                    } else if (opcion == 2 && opcioncpu == 1){
+                        ac1 += 15;
+                        int ataque = rand.nextInt(101);
+                        if (ataque > ac1){
+                            if (ataque > cscpu){
+                                System.out.println("CPU ha hecho golpe critico");
+                                damagecpu*=2;
+                            }
+                            hp1 -= damagecpu;
+                        } else {
+                            System.out.println("CPU no acerto el golpe");
+                        }
+                    } else {
+                        ac1 += 15;
+                        acpu += 15;
+                        System.out.println("Los dos se defendieron");
+                    }
+                    
+                    if (hp1 == 0 || hpcpu == 0){
+                        ganador = true;
+                    } else {
+                        System.out.println("HP PLAYER 1: " + hp1);
+                        System.out.println("HP PLAYER 1: " + hpcpu);
+                    }
+                    System.out.println();
                 }
             } else if (opcion == 6){
                 System.exit(0);
