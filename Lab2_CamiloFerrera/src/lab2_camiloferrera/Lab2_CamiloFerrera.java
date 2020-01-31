@@ -276,14 +276,13 @@ public class Lab2_CamiloFerrera {
                 System.out.println("Personaje Elimando Exitosamente!");
             } else if (opcion == 5){
                 for (int i = 0; i < personajes.size(); i++) {
-                    System.out.println((i+1) + ". " + personajes.get(i).getNombre());
+                    System.out.println((i+1) + ". " + personajes.get(i).getNombre() + " " + personajes.get(i).getRaza() + " " + personajes.get(i).getClase());
                 }
                 System.out.print("Ingrese opción de personaje a para jugar (Player1): ");
                 int personajep1 = leer.nextInt();
-                System.out.println();
-                System.out.println("Player1 jugara con: " + personajes.get(personajep1).getNombre());
+                personajep1--;
                 int personajecpu = rand.nextInt(personajes.size());
-                System.out.println("La CPU jugara con: " + personajes.get(personajecpu).getNombre());
+                System.out.println();
                 
                 int hp1 = 0, hpcpu = 0;
                 if (personajes.get(personajep1).getRaza().equals("Mediano")){
@@ -305,6 +304,9 @@ public class Lab2_CamiloFerrera {
                     hpcpu = 40 + rand.nextInt(31);
                 }
                 
+                System.out.println("Player1 jugara con: " + personajes.get(personajep1).getNombre() + " HP: " + hp1);
+                System.out.println("La CPU jugara con: " + personajes.get(personajecpu).getNombre() + " HP: " + hpcpu);
+                System.out.println();
                 
                 boolean ganador = false;
                 int ac1 = 0, acpu = 0, cs1 = 0, cscpu = 0, damage1 = 0, damagecpu = 0;
@@ -313,7 +315,7 @@ public class Lab2_CamiloFerrera {
                     
                     System.out.println("1. Atacar \n"
                             + "2. Defender");
-                    System.out.println("Ingrese opción de accion: ");
+                    System.out.print("Ingrese opción de accion (Player1): ");
                     opcion = leer.nextInt();
                     System.out.println();
 
@@ -336,7 +338,6 @@ public class Lab2_CamiloFerrera {
                     }
       
                     int opcioncpu = 1+rand.nextInt(2);
-                    System.out.println();
 
                     if (personajes.get(personajecpu).getClase().equals("Clérigo")){
                         acpu = 40;
@@ -355,28 +356,33 @@ public class Lab2_CamiloFerrera {
                         cscpu = 80;
                         damagecpu = 15 + rand.nextInt(11);
                     }
-                    
-                    
-
+                   
                     if (opcion == 1 && opcioncpu == 1){
                         int ataque = rand.nextInt(101);
                         if (ataque > acpu){
+                            System.out.println("Player1 ha atacado");
+                            System.out.println("Player1 ha acertado el golpe");
                             if (ataque > cs1){
                                 System.out.println("Player1 ha hecho golpe critico");
                                 damage1*=2;
                             }
+                            System.out.println("Damage causado: " + damage1);
                             hpcpu -= damage1;
                         } else {
                             System.out.println("Player1 no acerto el golpe");
                         }
                         
+                        System.out.println();
                         
                         ataque = rand.nextInt(101);
                         if (ataque > ac1){
+                            System.out.println("CPU ha atacado");
+                            System.out.println("CPU ha acertado el golpe");
                             if (ataque > cscpu){
                                 System.out.println("CPU ha hecho golpe critico");
                                 damagecpu*=2;
                             }
+                            System.out.println("Damage causado: " + damagecpu);
                             hp1 -= damagecpu;
                         } else {
                             System.out.println("CPU no acerto el golpe");
@@ -386,10 +392,13 @@ public class Lab2_CamiloFerrera {
                         acpu += 15;
                         int ataque = rand.nextInt(101);
                         if (ataque > acpu){
+                            System.out.println("Player1 ha atacado");
+                            System.out.println("Player1 ha acertado el golpe");
                             if (ataque > cs1){
                                 damage1*=2;
                                 System.out.println("Player1 ha hecho golpe critico");
                             }
+                            System.out.println("Damage causado: " + damage1);
                             hpcpu -= damage1;
                         } else {
                             System.out.println("Player1 no acerto el golpe");
@@ -397,12 +406,17 @@ public class Lab2_CamiloFerrera {
                         System.out.println("CPU se defendio");
                     } else if (opcion == 2 && opcioncpu == 1){
                         ac1 += 15;
+                        System.out.println("Player1 se defendio");
+                        System.out.println();
                         int ataque = rand.nextInt(101);
                         if (ataque > ac1){
+                            System.out.println("CPU ha atacado");
+                            System.out.println("CPU ha acertado el golpe");
                             if (ataque > cscpu){
                                 System.out.println("CPU ha hecho golpe critico");
                                 damagecpu*=2;
                             }
+                            System.out.println("Damage causado: " + damagecpu);
                             hp1 -= damagecpu;
                         } else {
                             System.out.println("CPU no acerto el golpe");
@@ -412,12 +426,17 @@ public class Lab2_CamiloFerrera {
                         acpu += 15;
                         System.out.println("Los dos se defendieron");
                     }
+                    System.out.println();
                     
-                    if (hp1 == 0 || hpcpu == 0){
+                    if (hp1 == 0){
                         ganador = true;
+                        System.out.println("HA GANADO CPU");
+                    } else  if (hpcpu == 0){
+                        ganador = true;
+                        System.out.println("HA GANADO Player1");
                     } else {
                         System.out.println("HP PLAYER 1: " + hp1);
-                        System.out.println("HP PLAYER 1: " + hpcpu);
+                        System.out.println("HP CPU: " + hpcpu);
                     }
                     System.out.println();
                 }
