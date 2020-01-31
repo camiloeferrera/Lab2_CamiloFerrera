@@ -13,6 +13,7 @@ public class Lab2_CamiloFerrera {
         personajes.add(new Personaje("Camilo","Mago","Humano","Es malisimo en java", "Norfair",(1.72),50,19));
         personajes.add(new Personaje("Luper","Pícaro","Elfo","Es muy picaro", "Norfair",(1.33),60,65));
         personajes.add(new Personaje("David","Pícaro","Enano","Esta quedando pelon", "Brinstar",(2.34),50,20));
+        personajes.add(new Personaje("Dazu","Clérigo","Mediano","Es precioso", "Zebes",(1.87),70,47));
         while (true) {
             System.out.println("1. Creación de Personajes \n"
                     + "2. Modificar Personajes \n"
@@ -361,6 +362,7 @@ public class Lab2_CamiloFerrera {
                         int ataque = rand.nextInt(101);
                         if (ataque > acpu){
                             System.out.println("Player1 ha atacado");
+                            System.out.println("Tirada de ataque: " + ataque);
                             System.out.println("Player1 ha acertado el golpe");
                             if (ataque > cs1){
                                 System.out.println("Player1 ha hecho golpe critico");
@@ -377,6 +379,7 @@ public class Lab2_CamiloFerrera {
                         ataque = rand.nextInt(101);
                         if (ataque > ac1){
                             System.out.println("CPU ha atacado");
+                            System.out.println("Tirada de ataque: " + ataque);
                             System.out.println("CPU ha acertado el golpe");
                             if (ataque > cscpu){
                                 System.out.println("CPU ha hecho golpe critico");
@@ -387,12 +390,17 @@ public class Lab2_CamiloFerrera {
                         } else {
                             System.out.println("CPU no acerto el golpe");
                         }
-                        
+                        System.out.println();
+                        System.out.println("AC Player1: " + ac1);
+                        System.out.println("AC CPU: " + acpu);
+                        System.out.println("CS Player1: " + cs1);
+                        System.out.println("CS CPU: " + cscpu);
                     } else if (opcion == 1 && opcioncpu == 2){
                         acpu += 15;
                         int ataque = rand.nextInt(101);
                         if (ataque > acpu){
                             System.out.println("Player1 ha atacado");
+                            System.out.println("Tirada de ataque: " + ataque);
                             System.out.println("Player1 ha acertado el golpe");
                             if (ataque > cs1){
                                 damage1*=2;
@@ -404,6 +412,9 @@ public class Lab2_CamiloFerrera {
                             System.out.println("Player1 no acerto el golpe");
                         }
                         System.out.println("CPU se defendio");
+                        System.out.println();
+                        System.out.println("AC CPU: " + acpu);
+                        System.out.println("CS Player1: " + cs1);
                     } else if (opcion == 2 && opcioncpu == 1){
                         ac1 += 15;
                         System.out.println("Player1 se defendio");
@@ -411,6 +422,7 @@ public class Lab2_CamiloFerrera {
                         int ataque = rand.nextInt(101);
                         if (ataque > ac1){
                             System.out.println("CPU ha atacado");
+                            System.out.println("Tirada de ataque: " + ataque);
                             System.out.println("CPU ha acertado el golpe");
                             if (ataque > cscpu){
                                 System.out.println("CPU ha hecho golpe critico");
@@ -421,6 +433,9 @@ public class Lab2_CamiloFerrera {
                         } else {
                             System.out.println("CPU no acerto el golpe");
                         }
+                        System.out.println();
+                        System.out.println("AC Player1: " + ac1);
+                        System.out.println("CS CPU: " + cscpu);
                     } else {
                         ac1 += 15;
                         acpu += 15;
