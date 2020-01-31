@@ -285,7 +285,7 @@ public class Lab2_CamiloFerrera {
                 int personajecpu = rand.nextInt(personajes.size());
                 System.out.println("La CPU jugara con: " + personajes.get(personajecpu).getNombre());
                 
-                int hp1 = 0,hp = 0;
+                int hp1 = 0, hpcpu = 0;
                 if (personajes.get(personajep1).getRaza().equals("Mediano")){
                     hp1 = 50+rand.nextInt(11);
                 } else if(personajes.get(personajep1).getRaza().equals("Enano")){
@@ -295,14 +295,69 @@ public class Lab2_CamiloFerrera {
                 } else if(personajes.get(personajep1).getRaza().equals("Humano")){
                     hp1 = 40 + rand.nextInt(31);
                 }
+                if (personajes.get(personajecpu).getRaza().equals("Mediano")){
+                    hpcpu = 50+rand.nextInt(11);
+                } else if(personajes.get(personajecpu).getRaza().equals("Enano")){
+                    hpcpu = 80+rand.nextInt(21);
+                } else if(personajes.get(personajecpu).getRaza().equals("Elfo")){
+                    hpcpu = 50 + rand.nextInt(21);
+                } else if(personajes.get(personajecpu).getRaza().equals("Humano")){
+                    hpcpu = 40 + rand.nextInt(31);
+                }
+                
+                
+                
                 int turno = 0;
                 boolean ganador = false;
-                while (ganador == false) {
+                int ac1 = 0, acpu = 0;
+                while (ganador == false) { 
                     if (turno%2 == 0){
+                        System.out.println("1. Atacar \n"
+                                + "2. Defender");
+                        System.out.println("Ingrese opción de accion: ");
+                        opcion = leer.nextInt();
+                        System.out.println();
                         
+                        if (personajes.get(personajep1).getClase().equals("Clérigo")){
+                            ac1 = 40;
+                        } else if(personajes.get(personajep1).getClase().equals("Bárbaro")){
+                            ac1 = 65;
+                        } else if(personajes.get(personajep1).getClase().equals("Mago")){
+                            ac1 = 20;
+                        } else if(personajes.get(personajep1).getClase().equals("Pícaro")){
+                            ac1 = 50;
+                        }
+                        
+                        if (opcion == 1){
+                            
+                        } else {
+                            ac1+=15;
+                        }
                     } else {
+                        System.out.println("1. Atacar \n"
+                                + "2. Defender");
+                        System.out.println("Ingrese opción de accion: ");
+                        opcion = leer.nextInt();
+                        System.out.println();
                         
+                        if (personajes.get(personajep1).getClase().equals("Clérigo")){
+                            acpu = 40;
+                        } else if(personajes.get(personajecpu).getClase().equals("Bárbaro")){
+                            acpu = 65;
+                        } else if(personajes.get(personajecpu).getClase().equals("Mago")){
+                            acpu = 20;
+                        } else if(personajes.get(personajecpu).getClase().equals("Pícaro")){
+                            acpu = 50;
+                        }
+                        
+                        if (opcion == 1){
+                            
+                        } else {
+                            acpu+=15;
+                        }
                     }
+                    
+                    turno++;
                 }
             } else if (opcion == 6){
                 System.exit(0);
